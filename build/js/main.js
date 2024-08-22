@@ -44,3 +44,66 @@ function add3(a, b) {
 function isEven(num) {
     return num % 2 === 0;
 }
+function func1() {
+    throw new Error('에러');
+}
+// const result1: never = func1();
+const func2 = () => {
+    throw new Error('에러');
+};
+const result2 = func2();
+function infinite() {
+    while (true) {
+        console.log('반복');
+    }
+}
+function strNum(param) {
+    if (typeof param === 'string') {
+    }
+    else if (typeof param === 'number') {
+    }
+    else {
+        param;
+    }
+}
+const person1 = {
+    name: 'Kim',
+    age: 28,
+    married: false
+};
+const add4 = (x, y) => x + y;
+const arr5 = ['1', '2', '3'];
+const obj2 = {
+    txt: '에러 안 남'
+};
+const resultX = '안녕';
+const bear1 = {
+    name: 'honey bear',
+    honey: true
+};
+const bear2 = {
+    name: 'honey bear',
+    honey: true
+};
+let firstName = '';
+let lastName = '';
+const adding = (x, y) => x + y;
+const multiplying = (x, y) => x * y;
+const myCircle = {
+    color: 'red',
+    radius: 5
+};
+const myDog = {
+    name: 'Peanut',
+    age: 3,
+    breed: 'Korean Shorthair'
+};
+const ex1 = {
+    test: 'hello'
+};
+const ex2 = 123;
+const obj4 = {
+    hello: 'world',
+    name: 'Kim',
+    age: 28
+};
