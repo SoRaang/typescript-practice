@@ -107,3 +107,30 @@ const obj4 = {
     name: 'Kim',
     age: 28
 };
+const product1 = {
+    name: '오가닉 김',
+    price: 2000,
+    description: '실제 맛있음'
+};
+const product2 = {
+    name: '바이오 스시',
+    price: 5000,
+};
+const dictionary = {
+    name: 'Book'
+};
+// --- 문제 7
+function firstEl(arr) {
+    return arr[0];
+}
+console.log(firstEl([1, 2, 3]));
+// --- 문제 8
+function leng(item) {
+    console.log(item.length);
+}
+leng('hello');
+// --- 문제 9 생략 문제 10
+function numBig(a, b) {
+    return a > b ? a : b;
+}
+console.log(numBig(1, 5));

@@ -228,3 +228,58 @@ type G = never & {};
 type H = {a: 'b'} & number;
 type I = null & {a: 'b'};
 type J = {} & string;
+
+// const what: J = 213;
+
+// --- 문제 5
+
+interface Product {
+    name: string,
+    price: number,
+    description?: string
+}
+
+const product1: Product = {
+    name: '오가닉 김',
+    price: 2000,
+    description: '실제 맛있음'
+}
+
+const product2: Product = {
+    name: '바이오 스시',
+    price: 5000,
+}
+
+// --- 문제 6
+
+interface Dictionary {
+    [key: string]: string;
+}
+
+const dictionary: Dictionary = {
+    name: 'Book'
+}
+
+// --- 문제 7
+
+function firstEl <T> (arr: T[]): T {
+    return arr[0];
+}
+
+console.log(firstEl([1, 2, 3]));
+
+// --- 문제 8
+
+function leng <T extends { length: number }> (item: T) {
+    console.log(item.length);
+}
+
+leng('hello');
+
+// --- 문제 9 생략 문제 10
+
+function numBig <T> (a: T, b: T): T {
+    return a > b ? a : b;
+}
+
+console.log(numBig(1, 5));
