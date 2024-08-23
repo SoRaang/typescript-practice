@@ -498,3 +498,94 @@ class RealPerson extends AbstractPerson {
         console.log(this.married);
     }
 }
+
+// --- 문제 15
+
+type FirstElement <T> = T extends [infer U, ... any[]] ? U : never;
+type Tuple1 = [string, number, boolean];
+
+type FirstOne = FirstElement <Tuple1>;
+
+// --- 문제 17
+
+class Animal2 {
+    private name: string;
+    protected age: number;
+
+    constructor(name: string, age: number) {
+        this.name = name,
+        this.age = age;
+    }
+
+    getName(): string {
+        return this.name;
+    }
+
+    getAge(): number {
+        return this.age;
+    }
+}
+
+class Dogs extends Animal2 {
+    breed: string;
+
+    constructor(name: string, age: number, breed: string) {
+        super(name, age),
+        this.breed = breed;
+    }
+
+    bark(): string {
+        return 'Woof!';
+    }
+}
+
+const myCat = new Dogs('땅콩이', 3, '고양이');
+
+// ---
+
+interface Address {
+    email: string;
+    address: string;
+}
+
+const me: Partial <Address> = {};
+const you: Partial <Address> = { email: 'john@abc.com' };
+const all: Address = { email: 'john@abc.com', address: 'abcabc' };
+
+interface Todo {
+    title: string;
+    description: string;
+    completed: boolean;
+}
+
+type TodoPreview = Pick <Todo, 'title' | 'completed'>;
+
+const todo: TodoPreview = {
+    title: 'clean room',
+    completed: false
+}
+
+interface Todo2 {
+    title: string;
+    description: string;
+    completed: boolean;
+    createdAt: number;
+}
+
+type TodoPreview2 = Omit <Todo2, 'description'>;
+
+const todo2: TodoPreview2 = {
+    title: 'clean room',
+    completed: false,
+    createdAt: 12345
+}
+
+type T0 = ReturnType<() => string> // string
+type T1 = ReturnType<(s: string) => void> // void
+
+function fn(str: string) {
+	return str;
+}
+
+const xxy: ReturnType<typeof fn> = 'hello';
+const xyy: ReturnType<typeof fn> = true;
