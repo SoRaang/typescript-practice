@@ -1,4 +1,5 @@
 "use strict";
+// --- 08. 22
 const obj = { name: "kim" };
 const arr = [1, 2, 'string'];
 const arr1 = ['1', '2', '3'];
@@ -134,3 +135,51 @@ function numBig(a, b) {
     return a > b ? a : b;
 }
 console.log(numBig(1, 5));
+function add5(a, b) {
+    return a + b;
+}
+add5('hello', 'world');
+add5(4, 5);
+function example(param) {
+    if (param) {
+        return 'string';
+    }
+    else {
+        return 123;
+    }
+}
+const result5 = example('what');
+const added = (x, y) => x + y;
+added(1, 2);
+added('1', '2');
+// --- 문제 13
+function removeD(arr) {
+    return Array.from(new Set(arr));
+}
+function returnLen(param) {
+    return param.length;
+}
+returnLen('123123');
+class Person {
+    name;
+    age;
+    married;
+    constructor(name, age, married) {
+        this.name = name;
+        this.age = age;
+        this.married = married;
+    }
+}
+// ---
+class Parent {
+    name;
+    age;
+    married;
+    value;
+    constructor(name, age, married) {
+        this.name = name;
+        this.age = age;
+        this.married = married;
+        this.value = 0;
+    }
+}

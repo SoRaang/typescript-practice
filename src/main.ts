@@ -1,3 +1,5 @@
+// --- 08. 22
+
 const obj = { name: "kim" } as const;
 const arr = [1, 2, 'string'];
 
@@ -283,3 +285,125 @@ function numBig <T> (a: T, b: T): T {
 }
 
 console.log(numBig(1, 5));
+
+// --- 08.23
+
+function add5(a: string, b: string): string;
+function add5(a: number, b: number): number;
+function add5(a: any, b: any): any {
+    return a + b;
+}
+
+add5('hello', 'world');
+add5(4, 5);
+
+function example(param: string | null): number;
+function example(param: string): string;
+function example(param: string | null): string | number {
+    if (param) {
+        return 'string'
+    } else {
+        return 123;
+    }
+}
+
+const result5 = example('what');
+
+interface Added {
+    (x: number, y: number): number;
+    (x: string, y: string): string;
+}
+
+const added: Added = (x: any, y: any) => x + y;
+
+added(1, 2);
+added('1', '2');
+// added(1, '2');
+
+type El <T> = T extends (infer E)[] ? E : never;
+type Str = El <string[]>;
+type NumBool = El <(number | boolean)[]>;
+
+type ElementType <T> = T extends (infer U)[] ? U : never;
+type NumberArray = number[];
+type Ele = ElementType <NumberArray>;
+
+// --- 문제 13
+
+function removeD <T> (arr: T[]): T[] {
+    return Array.from(new Set(arr));
+}
+
+// --- 문제 14
+
+function returnLen(param: any[]): number;
+function returnLen(param: string): number;
+function returnLen(param: any): number {
+    return param.length;
+}
+
+returnLen('123123');
+
+// --- 클래스
+
+interface Human {
+    name: string;
+    age: number;
+    married: boolean;
+}
+
+class Person implements Human {
+    name;
+    protected age;
+    married;
+
+    constructor(name: string, age: number, married: boolean) {
+        this.name = name;
+        this.age = age;
+        this.married = married
+    }
+}
+
+// ---
+
+class Parent {
+    name?: string;
+    readonly age: number;
+    protected married: boolean;
+    private value: number;
+
+    constructor(name: string, age: number, married: boolean) {
+        this.name = name;
+        this.age = age;
+        this.married = married;
+        this.value = 0;
+    }
+
+    changeAge(age: number) {
+        this.age = age; // 읽기 전용 속성이므로 할당할 수 없음
+    }
+}
+
+class Child extends Parent {
+    constructor(name: string, age: number, married: boolean) {
+        super(name, age, married);
+    }
+
+    sayName() {
+        console.log(this.name);
+    }
+
+    sayMarried() {
+        console.log(this.married);
+    }
+
+    sayValue() {
+        console.log(this.value); // private 속성이므로 Parent 클래스 내에서만 액세스할 수 있음
+    }
+}
+
+const child = new Child('Kim', 28, false);
+
+child.name;
+child.married; // married 속성은 보호된 속성이며 Parent 및 해당 하위 클래스 내에서만 액세스할 수 있음
+child.value; // private 속성이므로 Parent 클래스 내에서만 액세스할 수 있음
