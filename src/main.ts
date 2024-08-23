@@ -354,7 +354,7 @@ interface Human {
 
 class Person implements Human {
     name;
-    protected age;
+    age;
     married;
 
     constructor(name: string, age: number, married: boolean) {
@@ -407,3 +407,94 @@ const child = new Child('Kim', 28, false);
 child.name;
 child.married; // married 속성은 보호된 속성이며 Parent 및 해당 하위 클래스 내에서만 액세스할 수 있음
 child.value; // private 속성이므로 Parent 클래스 내에서만 액세스할 수 있음
+
+// ---
+
+class Man {
+    play() {
+        console.log('play');
+    }
+
+    study() {
+        console.log('study');
+    }
+}
+
+class Employee extends Man {
+    work() {
+        console.log('work');
+    }
+
+    override study() {
+        console.log('study');
+    }
+}
+
+// ---
+
+class Signature {
+    [propName: string]: string | number | undefined;
+    static [propName: string]: boolean;
+}
+
+const sig = new Signature();
+sig.hello = 'world';
+Signature.isGood = true;
+
+// ---
+
+class Person2 {
+    age: number;
+    married: boolean;
+
+    constructor(age: number, married: boolean) {
+        this.age = age;
+        this.married = married
+    }
+
+    sayAge() {
+        console.log(this.age);
+    }
+
+    sayMarried(this: Person) {
+        console.log(this.married);
+    }
+
+    sayCallback(callback: (this: this) => void) {
+        callback.call(this);
+    }
+}
+
+// --- 추상 클래스
+
+abstract class AbstractPerson {
+    name: string;
+    age: number;
+    married: boolean = false;
+    abstract value: number;
+
+    constructor(name: string, age: number, married: boolean) {
+        this.name = name;
+        this.age = age;
+        this.married = married;
+    }
+
+    sayName() {
+        console.log(this.name);
+    }
+
+    abstract sayAge(): void;
+    abstract sayMarried(): void;
+}
+
+class RealPerson extends AbstractPerson {
+    value: number = 0;
+
+    sayAge() {
+        console.log(this.age);
+    }
+
+    sayMarried() {
+        console.log(this.married);
+    }
+}
